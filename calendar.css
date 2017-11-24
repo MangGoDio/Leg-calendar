@@ -1,0 +1,43 @@
+#calendar {}
+
+#calendar>ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+#calendar>ul>li {
+    text-align: center;
+    flex-grow: 1;
+    padding: 10px 0;
+}
+
+#calendar>ul>li:first-of-type,
+#calendar>ul>li:last-of-type {
+    color: red;
+}
+
+#calendar>section {
+    display: flex;
+    flex-flow: wrap;
+    align-content: flex-start;
+}
+
+.card {
+    width: calc(100% / 7);
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    box-sizing: border-box;
+}
+
+.red {
+    color: red;
+}
+
+.gray {
+    color: #ccc;
+}
+
+.today {
+    background: #ddd;
+}
