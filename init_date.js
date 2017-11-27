@@ -1,10 +1,8 @@
 // 初始化当前月份表格
-const initTable = data => {
+const initTable = () => {
 
-    // 定义月份表格数组
-    let dateInfo = data
     // 获取当前年份和月份
-    const dayArr = [], { year, month } = dateInfo.current
+    const dayArr = [], { year, month } = DateInfo.current
 
     // 定义到当前月份1号的星期数
     const curWeek = getWeek(year, month, 1)
@@ -39,13 +37,46 @@ const initTable = data => {
         }
     }
 
-    dateInfo.arr = dayArr
+    DateInfo.arr = dayArr
 
-    return addLegInfo(dateInfo)
-
+    addLegInfo()
 }
 
 // 插入独有的军团信息
-const addLegInfo = date => {
-    return date
+const addLegInfo = (CallBack) => {
+
+    for (let i = 0, dio = DateInfo.arr.length; i < dio; i++) {
+        DateInfo.arr[i] = legDay(DateInfo.arr[i])
+    }
+
+    showCalendar()
+
+}
+
+// 计算某一天的军团信息
+const legDay = info => {
+    // 初始化当前数组第一天
+    const diffObj = diffDays(__BENCH.date, `${DateInfo.current.year}-${info.month + 1}-${info.day}`)
+    if (diffObj.new < 1) return
+    // 循环填装数组
+    let time = __BENCH.time
+    for (let i = 0; i < diffObj.days; i++) {
+        time += 18.5
+        if (time > 24) {
+            time -= 24
+        } else {
+            diffObj.days++
+        }
+    }
+
+    let arr = []
+    arr.push({ place: __PLACE[(diffObj.days) % 12], time })
+    time += 18.5
+    if (time < 24) {
+        arr.push({ place: __PLACE[(diffObj.days) % 12 + 1], time })
+    }
+
+    info.leg = arr
+
+    return info
 }

@@ -15,3 +15,22 @@ const getDayInfo = (year, month, num, status) => {
         status: status || 'current'
     }
 }
+
+// 计算两个日期相差天数
+const diffDays = (day1, day2) => {
+    let obj = {
+        days: 0,
+        new: 0,
+    }
+
+    const diff = Date.parse(day2) - Date.parse(day1)
+    if (diff === 0) {
+        return obj
+    } else {
+        obj.new = diff > 0 ? 1 : -1
+    }
+
+    obj.days = Math.floor(Math.abs(diff) / (24 * 3600 * 1000))
+
+    return obj
+}

@@ -26,8 +26,8 @@
     width: calc(100% / 7);
     height: 50px;
     text-align: center;
-    line-height: 50px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .red {

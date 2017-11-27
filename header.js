@@ -1,25 +1,25 @@
 // 绑定头部事件
-const initHeader = date => {
+const initHeader = () => {
     const leftBtn = getDom('#container .left-btn'),
         rightBtn = getDom('#container .right-btn')
 
-    bindBtn(leftBtn, -1, date)
-    bindBtn(rightBtn, 1, date)
+    bindBtn(leftBtn, -1)
+    bindBtn(rightBtn, 1)
 }
 
 // 显示头部文字
-const textHeader = date => {
+const textHeader = () => {
     const title = getDom('#container .cur-date'),
-        { year, month } = date.current
+        { year, month } = DateInfo.current
     title.textContent = `${year}年${month + 1}月`
 }
 
 // 绑定方法
-const bindBtn = (dom, num, date) => {
+const bindBtn = (dom, num) => {
     dom.addEventListener('click', () => {
-        const current = nextYear(date.current, num)
-        date.current = current
-        showCalendar(initTable(date))
+        const current = nextYear(DateInfo.current, num)
+        DateInfo.current = current
+        showCalendar(initTable())
     })
 }
 
