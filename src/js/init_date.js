@@ -1,5 +1,12 @@
+
+// 保存上一天超出的日期
+let prevDay = {}
+
 // 初始化当前月份表格
 const initTable = () => {
+
+    //  重置上个月的余留时间
+    prevDay = {}
 
     // 获取当前年份和月份
     const dayArr = [], { year, month } = DateInfo.current
@@ -58,8 +65,6 @@ const addLegInfo = () => {
 
 }
 
-// 保存上一天超出的日期
-let prevDay = {}
 
 // 计算某一天的军团信息
 const legDay = info => {
@@ -83,17 +88,17 @@ const legDay = info => {
         prevDay = {}
     }
     // 计算第一天是否有超出时间
-    if (time + 6.5 > 24) {
+    if (time + 6 > 24) {
         end = 24
-        prevDay = { place: __PLACE[(diffObj.days) % 12], time: 0, end: time + 6.5 - 24 }
+        prevDay = { place: __PLACE[(diffObj.days) % 12], time: 0, end: time + 6 - 24 }
     } else {
-        end = time + 6.5
+        end = time + 6
     }
     arr.push({ place: __PLACE[(diffObj.days) % 12], time, end })
     time += 18.5
     if (time < 24) {
         // 计算第一天第二段超出时间
-        prevDay = { place: __PLACE[(diffObj.days) % 12 + 1], time: 0, end: time + 6.5 - 24 }
+        prevDay = { place: __PLACE[(diffObj.days) % 12 + 1], time: 0, end: time + 6 - 24 }
         arr.push({ place: __PLACE[(diffObj.days) % 12 + 1], time, end: 24 })
     }
 

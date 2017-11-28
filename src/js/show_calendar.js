@@ -36,8 +36,8 @@ const addEvent = () => {
 // 当前日期颜色
 const dayColor = index => {
 
-    const { status, week } = DateInfo.arr[index]
-    if (today(index)) {
+    const { status, week, day } = DateInfo.arr[index]
+    if (today(day)) {
         return 'today'
     } else if (status === 'other') {
         return 'gray'
