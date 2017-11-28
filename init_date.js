@@ -43,15 +43,23 @@ const initTable = () => {
 }
 
 // 插入独有的军团信息
-const addLegInfo = (CallBack) => {
+const addLegInfo = () => {
 
-    for (let i = 0, dio = DateInfo.arr.length; i < dio; i++) {
-        DateInfo.arr[i] = legDay(DateInfo.arr[i])
+    // 7月份以前的不插入
+    const { year, month } = DateInfo.current
+
+    if (year > 2017 || year === 2017 && month > 6) {
+        for (let i = 0, dio = DateInfo.arr.length; i < dio; i++) {
+            DateInfo.arr[i] = legDay(DateInfo.arr[i])
+        }
     }
 
     showCalendar()
 
 }
+
+// 保存上一天超出的日期
+let prevDay = {}
 
 // 计算某一天的军团信息
 const legDay = info => {
@@ -69,11 +77,25 @@ const legDay = info => {
         }
     }
 
-    let arr = []
-    arr.push({ place: __PLACE[(diffObj.days) % 12], time })
+    let arr = [], end = ''
+    // 如果有上一天遗留下来的数据，加入
+    if (prevDay.place) {
+        arr.push(prevDay)
+        prevDay = {}
+    }
+    // 计算第一天是否有超出时间
+    if (time + 6.5 > 24) {
+        end = 24
+        prevDay = { place: __PLACE[(diffObj.days) % 12], time: 0, end: time + 6.5 - 24 }
+    } else {
+        end = time + 6.5
+    }
+    arr.push({ place: __PLACE[(diffObj.days) % 12], time, end })
     time += 18.5
     if (time < 24) {
-        arr.push({ place: __PLACE[(diffObj.days) % 12 + 1], time })
+        // 计算第一天第二段超出时间
+        prevDay = { place: __PLACE[(diffObj.days) % 12 + 1], time: 0, end: time + 6.5 - 24 }
+        arr.push({ place: __PLACE[(diffObj.days) % 12 + 1], time, end: 24 })
     }
 
     info.leg = arr

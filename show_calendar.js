@@ -11,13 +11,8 @@ const showCalendar = () => {
 
     for (let i = 0, dio = arr.length; i < dio; i++) {
         dayCard = `<div class='card ${dayColor(i)}' index='${i}'>
-        ${arr[i].day}
-        <p>${arr[i].leg[0].place}</p>
-        <p>${arr[i].leg[0].time} ~ ${arr[i].leg[0].time + 6.5}</p>
-        <p>${arr[i].leg[1] ? arr[i].leg[1].place : ''}</p>
-        
+        <h1>${arr[i].day}</h1>${arr[i].leg ? legInfo(arr[i].leg) : ''}
         </div>`
-        //const oDivNode = document.createElement('div')
         calHtml += dayCard
     }
 
@@ -60,4 +55,16 @@ const today = index => {
     const { year: ty, month: tm, day } = DateInfo.today
     const { year: cy, month: cm } = DateInfo.current
     return ty === cy && tm === cm && day === index
+}
+
+// 解析军团信息数组
+const legInfo = arr => {
+
+    let dom = ''
+    log(arr.length)
+    for (let i of arr) {
+        dom += `<p class='${arr.length === 1 && 'middle'}'>${i.place}</p><p>${numToTime(i.time)} ~ ${numToTime(i.end)}</p>`
+    }
+
+    return dom
 }

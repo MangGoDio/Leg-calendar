@@ -20,14 +20,27 @@
     display: flex;
     flex-flow: wrap;
     align-content: flex-start;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 .card {
     width: calc(100% / 7);
-    height: 50px;
-    text-align: center;
+    height: 110px;
     box-sizing: border-box;
-    cursor: pointer;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+.card>h1 {
+    font-weight: 500;
+}
+
+.card>.middle {
+    margin-top: 16px;
 }
 
 .red {
@@ -40,4 +53,13 @@
 
 .today {
     background: #ddd;
+}
+
+@media screen and (max-width: 620px) {
+    .card {
+        height: auto;
+    }
+    .card>p {
+        font-size: 12px;
+    }
 }

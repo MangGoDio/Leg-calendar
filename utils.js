@@ -34,3 +34,11 @@ const diffDays = (day1, day2) => {
 
     return obj
 }
+
+// 解析时间
+const numToTime = time => {
+    const str = time.toString(),
+        hours = str.split('.')[0],
+        mins = str.split('.')[1]
+    return mins ? `${hours}:30` : `${hours}:00`
+}
