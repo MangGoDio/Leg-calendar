@@ -65,7 +65,6 @@ let prevDay = {}
 const legDay = info => {
     // 初始化当前数组第一天
     const diffObj = diffDays(__BENCH.date, `${DateInfo.current.year}-${info.month + 1}-${info.day}`)
-    if (diffObj.new < 1) return
     // 循环填装数组
     let time = __BENCH.time
     for (let i = 0; i < diffObj.days; i++) {

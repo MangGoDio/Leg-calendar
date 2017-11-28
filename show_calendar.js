@@ -61,7 +61,7 @@ const today = index => {
 const legInfo = arr => {
 
     let dom = ''
-    log(arr.length)
+
     for (let i of arr) {
         dom += `<p class='${arr.length === 1 && 'middle'}'>${i.place}</p><p>${numToTime(i.time)} ~ ${numToTime(i.end)}</p>`
     }
