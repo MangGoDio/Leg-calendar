@@ -1,4 +1,9 @@
+import { initHeader } from './header'
+import { initTable } from './init_date'
+
 let DateInfo = {}
+
+window.DateInfo = DateInfo
 
     ; (() => {
 
@@ -29,7 +34,7 @@ let DateInfo = {}
             return dateArr
         }
 
-        DateInfo = initDate()
+        window.DateInfo = initDate()
 
         // 初始化头部
         initHeader()

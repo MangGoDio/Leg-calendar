@@ -1,12 +1,12 @@
 const log = console.log.bind(console)
 
-const getDom = str => document.querySelector(str)
+export const getDom = str => document.querySelector(str)
 
 // 获取当前星期数
-const getWeek = (year, month, num) => new Date(year, month, num).getDay()
+export const getWeek = (year, month, num) => new Date(year, month, num).getDay()
 
 // 获取当前日期信息
-const getDayInfo = (year, month, num, status) => {
+export const getDayInfo = (year, month, num, status) => {
     const date = new Date(year, month, num)
     return {
         day: date.getDate(),
@@ -17,7 +17,7 @@ const getDayInfo = (year, month, num, status) => {
 }
 
 // 计算两个日期相差天数
-const diffDays = (day1, day2) => {
+export const diffDays = (day1, day2) => {
     let obj = {
         days: 0,
         new: 0,
@@ -36,7 +36,7 @@ const diffDays = (day1, day2) => {
 }
 
 // 解析时间
-const numToTime = time => {
+export const numToTime = time => {
     const str = time.toString(),
         hours = str.split('.')[0],
         mins = str.split('.')[1]

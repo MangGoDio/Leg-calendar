@@ -1,4 +1,4 @@
-const __PLACE = [
+export const __PLACE = [
     '阿苏纳',
     '瓦尔莎拉',
     '风暴峡湾',
@@ -13,7 +13,7 @@ const __PLACE = [
     '至高岭',
 ]
 
-const __BENCH = {
+export const __BENCH = {
     place: '阿苏纳',
     time: 12.5,
     date: '2017-6-18',

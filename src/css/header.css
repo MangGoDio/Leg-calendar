@@ -4,7 +4,6 @@
 
 #container>header {
     height: 50px;
-    background: #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,8 +29,8 @@
     margin: auto;
     width: 15px;
     height: 15px;
-    border-left: 4px solid #ccc;
-    border-bottom: 4px solid #ccc;
+    border-left: 4px solid #eee;
+    border-bottom: 4px solid #eee;
     transform: rotate(45deg);
 }
 

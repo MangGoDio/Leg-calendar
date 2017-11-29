@@ -1,5 +1,9 @@
+import { getDom } from './utils'
+import { initTable } from './init_date'
+import { showCalendar } from './show_calendar'
+
 // 绑定头部事件
-const initHeader = () => {
+export const initHeader = () => {
     const leftBtn = getDom('#container .left-btn'),
         rightBtn = getDom('#container .right-btn')
 
@@ -8,17 +12,17 @@ const initHeader = () => {
 }
 
 // 显示头部文字
-const textHeader = () => {
+export const textHeader = () => {
     const title = getDom('#container .cur-date'),
-        { year, month } = DateInfo.current
+        { year, month } = window.DateInfo.current
     title.textContent = `${year}年${month + 1}月`
 }
 
 // 绑定方法
 const bindBtn = (dom, num) => {
     dom.addEventListener('click', () => {
-        const current = nextYear(DateInfo.current, num)
-        DateInfo.current = current
+        const current = nextYear(window.DateInfo.current, num)
+        window.DateInfo.current = current
         showCalendar(initTable())
     })
 }

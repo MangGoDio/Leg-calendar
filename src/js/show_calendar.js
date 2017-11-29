@@ -1,9 +1,12 @@
-const showCalendar = () => {
+import { textHeader } from './header'
+import { getDom, numToTime } from './utils'
+
+export const showCalendar = () => {
 
     // 初始化头部
     textHeader()
 
-    const arr = DateInfo.arr
+    const arr = window.DateInfo.arr
 
     const calendarBox = getDom('#calendar > section')
 
@@ -28,7 +31,6 @@ const addEvent = () => {
             for (let i of btns) i.classList.remove('active')
             const index = e.target.getAttribute('index')
             e.target.classList.add('active')
-            log(DateInfo.arr[index])
         })
     }
 }
@@ -36,8 +38,8 @@ const addEvent = () => {
 // 当前日期颜色
 const dayColor = index => {
 
-    const { status, week, day } = DateInfo.arr[index]
-    if (today(day)) {
+    const { status, week, day, month } = window.DateInfo.arr[index]
+    if (today(day, month)) {
         return 'today'
     } else if (status === 'other') {
         return 'gray'
@@ -50,11 +52,11 @@ const dayColor = index => {
 }
 
 // 判定是否今天
-const today = index => {
+const today = (index, month) => {
 
-    const { year: ty, month: tm, day } = DateInfo.today
-    const { year: cy, month: cm } = DateInfo.current
-    return ty === cy && tm === cm && day === index
+    const { year: ty, month: tm, day } = window.DateInfo.today
+    const { year: cy, month: cm } = window.DateInfo.current
+    return ty === cy && tm === month && day === index
 }
 
 // 解析军团信息数组

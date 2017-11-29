@@ -1,15 +1,17 @@
-
+import { getWeek, getDayInfo, diffDays } from './utils'
+import { __BENCH, __PLACE } from './config'
+import { showCalendar } from './show_calendar'
 // 保存上一天超出的日期
 let prevDay = {}
 
 // 初始化当前月份表格
-const initTable = () => {
+export const initTable = () => {
 
     //  重置上个月的余留时间
     prevDay = {}
 
     // 获取当前年份和月份
-    const dayArr = [], { year, month } = DateInfo.current
+    const dayArr = [], { year, month } = window.DateInfo.current
 
     // 定义到当前月份1号的星期数
     const curWeek = getWeek(year, month, 1)
@@ -44,7 +46,7 @@ const initTable = () => {
         }
     }
 
-    DateInfo.arr = dayArr
+    window.DateInfo.arr = dayArr
 
     addLegInfo()
 }
@@ -53,11 +55,11 @@ const initTable = () => {
 const addLegInfo = () => {
 
     // 7月份以前的不插入
-    const { year, month } = DateInfo.current
+    const { year, month } = window.DateInfo.current
 
     if (year > 2017 || year === 2017 && month > 6) {
-        for (let i = 0, dio = DateInfo.arr.length; i < dio; i++) {
-            DateInfo.arr[i] = legDay(DateInfo.arr[i])
+        for (let i = 0, dio = window.DateInfo.arr.length; i < dio; i++) {
+            window.DateInfo.arr[i] = legDay(window.DateInfo.arr[i])
         }
     }
 
@@ -69,7 +71,7 @@ const addLegInfo = () => {
 // 计算某一天的军团信息
 const legDay = info => {
     // 初始化当前数组第一天
-    const diffObj = diffDays(__BENCH.date, `${DateInfo.current.year}-${info.month + 1}-${info.day}`)
+    const diffObj = diffDays(__BENCH.date, `${window.DateInfo.current.year}-${info.month + 1}-${info.day}`)
     // 循环填装数组
     let time = __BENCH.time
     for (let i = 0; i < diffObj.days; i++) {
