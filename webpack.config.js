@@ -13,7 +13,7 @@ module.exports = {
             test: /\.js$/,
             use: [{
                 loader: 'babel-loader',
-                options: { presets: ['es2015'] }
+                options: { presets: ['es2015', 'stage-0'] }
             }],
             exclude: /node_modules/
         }, {
@@ -35,11 +35,11 @@ module.exports = {
         }
         ]
     },
-    // plugins: [
-    //     new webpack.optimize.UglifyJsPlugin({
-    //         compress: {
-    //             warnings: false
-    //         }
-    //     })
-    // ]
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
+    ]
 }
