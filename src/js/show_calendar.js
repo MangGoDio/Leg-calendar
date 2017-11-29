@@ -20,6 +20,9 @@ export const showCalendar = () => {
     }
 
     calendarBox.innerHTML = calHtml
+
+    getDom('#container').classList.remove('hide')
+
     // 绑定事件
     addEvent()
 }
