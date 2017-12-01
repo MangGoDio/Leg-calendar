@@ -31,7 +31,9 @@ const addEvent = () => {
     const btns = document.querySelectorAll('#calendar > section > .card')
     for (let i = 0, dio = btns.length; i < dio; i++) {
         btns[i].addEventListener('click', e => {
-            for (let i of btns) i.classList.remove('active')
+            for (let j = 0, mango = btns.length; j < mango; j++) {
+                btns[j].classList.remove('active')
+            }
             const index = e.target.getAttribute('index')
             e.target.classList.add('active')
         })
@@ -67,8 +69,8 @@ const legInfo = arr => {
 
     let dom = ''
 
-    for (let i of arr) {
-        dom += `<p class='${arr.length === 1 && 'middle'}'>${i.place}</p><p>${numToTime(i.time)} ~ ${numToTime(i.end)}</p>`
+    for (let i = 0, dio = arr.length; i < dio; i++) {
+        dom += `<p class='${arr.length === 1 && 'middle'}'>${arr[i].place}</p><p>${numToTime(arr[i].time)} ~ ${numToTime(arr[i].end)}</p>`
     }
 
     return dom
