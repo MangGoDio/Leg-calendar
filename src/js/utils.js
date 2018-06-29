@@ -23,7 +23,6 @@ export const diffDays = (day1, day2) => {
     days: 0,
     new: 0
   };
-  console.log(day2);
   const diff = Date.parse(day2) - Date.parse(day1);
   if (diff === 0) {
     return obj;
